@@ -1,0 +1,11 @@
+node_modules/
+# Сборка и сгенерированное демо
+dist/
+.vite/
+/demo.html
+*.log
+.env
+.env.*
+!.env.example
+*.local
+.vscode/
