@@ -6,48 +6,263 @@
   width: min(100%, max(600px, calc((100svh - 480px) * 1.6 + 176px)), 1520px);
   margin: auto;
 }
-.garage-viewport { min-width: 0; overflow: hidden; border-radius: 10px; }
-.garage-viewport .swiper { width: 100%; overflow: hidden; }
-.garage-viewport .swiper-slide { min-width: 0; }
-.carousel-arrow { width: 58px; height: 58px; margin-bottom: 64px; border-radius: 50%; border: 1px solid #c6c5bb; background: #fffdf7; color: var(--ink); font-size: 27px; transition: color .2s, border-color .2s; }
-.carousel-arrow:hover:not(:disabled) { color: var(--red); border-color: var(--red); }
-.carousel-arrow.next { justify-self: end; }
-.garage-card { min-width: 0; }
-.garage-scene { position: relative; aspect-ratio: 1.6; container-type: inline-size; overflow: hidden; isolation: isolate; background: linear-gradient(#eceae2 0 77%, #d5d7ce 77% 80%, #e3e1d9 80%); border: 1px solid #dfded5; border-radius: 10px; }
-.building { position: absolute; top: 13%; bottom: 19%; left: 0; width: 100%; background: repeating-linear-gradient(90deg, #d6d4c7 0 16%, #c2c2b6 16.5% 17%, #d6d4c7 17.5% 34%); box-shadow: 0 20px 25px #343c3820; }
-.roof { position: absolute; left: -2%; top: -7%; width: 104%; height: 19%; background: #63665d; border-top: clamp(6px, 1cqw, 13px) solid var(--accent); border-bottom: 5px solid #383c36; box-shadow: 0 8px 12px #0003; }
-.wall-line { position: absolute; top: 35%; left: 0; width: 100%; height: 3px; background: #b8b6a9; }
-.facade { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: contain; }
-.garage-sign { display: flex; align-items: center; justify-content: center; gap: clamp(8px, 1.4cqw, 20px); position: absolute; top: 23%; left: 14%; width: 72%; height: 13%; color: #282b26; font-weight: 700; font-size: clamp(14px, 3cqw, 40px); }
-.garage-sign .avatar { width: clamp(24px, 4.6cqw, 60px); height: clamp(24px, 4.6cqw, 60px); font-size: clamp(10px, 1.7cqw, 24px); border-radius: 7px; }
-.garage-opening { position: absolute; left: var(--door-left, 14%); top: var(--door-top, 40%); width: var(--door-width, 72%); height: var(--door-height, 41%); padding: 0; border: clamp(4px, .6cqw, 9px) solid #62665b; border-bottom: 0; background: #1c211e; overflow: hidden; box-shadow: 0 -2px 0 #b7b6a9; border-radius: 2px; color: #fff; }
-.garage-opening:disabled { opacity: 1; }
-.garage-opening:focus-visible { outline-offset: -5px; outline-color: #f4eece; }
-.garage-opening:hover .shutter { filter: brightness(1.15); }
-.garage-inside { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; background: radial-gradient(ellipse at center bottom, #bfce9133, #161d18 85%); }
-.garage-inside > span { font-size: clamp(28px, 7cqw, 90px); color: var(--accent); }
-.garage-inside small { font-size: clamp(12px, 1.6cqw, 24px); }
-.shutter { position: absolute; inset: 0; display: grid; place-items: center; background: repeating-linear-gradient(0deg, #5f6768 0 13px, #4c5657 13px 15px, #748080 15px 16px); border-bottom: clamp(5px, .8cqw, 10px) solid var(--accent); transition: transform .7s cubic-bezier(.22, .7, .3, 1), filter .2s; }
-.shutter > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; }
-.door-label { display: flex; align-items: center; gap: clamp(12px, 3cqw, 40px); padding: clamp(8px, 1.8cqw, 24px) clamp(12px, 2.8cqw, 38px); background: #232d29e8; color: #fffdf5; border: 1px solid #b5bfb255; border-radius: 4px; font-size: clamp(12px, 1.9cqw, 27px); z-index: 1; }
-.door-label b { font-size: 1.3em; font-weight: 400; }
-.is-open .shutter { transform: translateY(-102%); }
-.garage-curb { position: absolute; bottom: 16%; left: 0; width: 100%; height: 4%; background: repeating-linear-gradient(90deg, #f7f4e8 0 5%, var(--accent) 5% 10%); transform: skewX(-20deg); }
-.garage-caption { height: 64px; display: flex; align-items: center; justify-content: center; gap: 18px; padding: 12px 4px; }
-.garage-caption h2 { font-size: clamp(22px, 1.4vw, 34px); font-weight: 600; letter-spacing: -.8px; }
-.seen-mark { font-size: clamp(11px, .7vw, 15px); color: #52664a; }
+.garage-viewport {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.garage-viewport .swiper {
+  width: 100%;
+  overflow: hidden;
+}
+.garage-viewport .swiper-slide {
+  min-width: 0;
+}
+.carousel-arrow {
+  width: 58px;
+  height: 58px;
+  margin-bottom: 64px;
+  border-radius: 50%;
+  border: 1px solid #c6c5bb;
+  background: #fffdf7;
+  color: var(--ink);
+  font-size: 27px;
+  transition:
+    color 0.2s,
+    border-color 0.2s;
+}
+.carousel-arrow:hover:not(:disabled) {
+  color: var(--red);
+  border-color: var(--red);
+}
+.carousel-arrow.next {
+  justify-self: end;
+}
+.garage-card {
+  min-width: 0;
+}
+.garage-scene {
+  position: relative;
+  aspect-ratio: 1.6;
+  container-type: inline-size;
+  overflow: hidden;
+  isolation: isolate;
+  background: linear-gradient(#8b8a82 0 77%, #d5d7ce 77% 80%, #000000 80%);
+  border: 1px solid #dfded5;
+  border-radius: 10px;
+}
+.building {
+  position: absolute;
+  top: 13%;
+  bottom: 19%;
+  left: 0;
+  width: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    #d6d4c7 0 16%,
+    #c2c2b6 16.5% 17%,
+    #d6d4c7 17.5% 34%
+  );
+  box-shadow: 0 20px 25px #343c3820;
+}
+.roof {
+  position: absolute;
+  left: -2%;
+  top: -7%;
+  width: 104%;
+  height: 19%;
+  background: #63665d;
+  border-top: clamp(6px, 1cqw, 13px) solid var(--accent);
+  border-bottom: 5px solid #383c36;
+  box-shadow: 0 8px 12px #0003;
+}
+.wall-line {
+  position: absolute;
+  top: 35%;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #b8b6a9;
+}
+.facade {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  object-fit: contain;
+}
+.garage-sign {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 1.4cqw, 20px);
+  position: absolute;
+  top: 23%;
+  left: 14%;
+  width: 72%;
+  height: 13%;
+  color: #282b26;
+  font-weight: 700;
+  font-size: clamp(14px, 3cqw, 40px);
+}
+.garage-sign .avatar {
+  width: clamp(24px, 4.6cqw, 60px);
+  height: clamp(24px, 4.6cqw, 60px);
+  font-size: clamp(10px, 1.7cqw, 24px);
+  border-radius: 7px;
+}
+.garage-opening {
+  position: absolute;
+  left: var(--door-left, 14%);
+  top: var(--door-top, 40%);
+  width: var(--door-width, 72%);
+  height: var(--door-height, 41%);
+  padding: 0;
+  border: clamp(4px, 0.6cqw, 9px) solid #62665b;
+  border-bottom: 0;
+  background: #1c211e;
+  overflow: hidden;
+  box-shadow: 0 -2px 0 #b7b6a9;
+  border-radius: 2px;
+  color: #fff;
+}
+.garage-opening:disabled {
+  opacity: 1;
+}
+.garage-opening:focus-visible {
+  outline-offset: -5px;
+  outline-color: #f4eece;
+}
+.garage-opening:hover .shutter {
+  filter: brightness(1.15);
+}
+.garage-inside {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: radial-gradient(ellipse at center bottom, #bfce9133, #161d18 85%);
+}
+.garage-inside > span {
+  font-size: clamp(28px, 7cqw, 90px);
+  color: var(--accent);
+}
+.garage-inside small {
+  font-size: clamp(12px, 1.6cqw, 24px);
+}
+.shutter {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: repeating-linear-gradient(
+    0deg,
+    #5f6768 0 13px,
+    #4c5657 13px 15px,
+    #748080 15px 16px
+  );
+  border-bottom: clamp(5px, 0.8cqw, 10px) solid var(--accent);
+  transition:
+    transform 0.7s cubic-bezier(0.22, 0.7, 0.3, 1),
+    filter 0.2s;
+}
+.shutter > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+.door-label {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 3cqw, 40px);
+  padding: clamp(8px, 1.8cqw, 24px) clamp(12px, 2.8cqw, 38px);
+  background: #232d29e8;
+  color: #fffdf5;
+  border: 1px solid #b5bfb255;
+  border-radius: 4px;
+  font-size: clamp(12px, 1.9cqw, 27px);
+  z-index: 1;
+}
+.door-label b {
+  font-size: 1.3em;
+  font-weight: 400;
+}
+.is-open .shutter {
+  transform: translateY(-102%);
+}
+.garage-curb {
+  position: absolute;
+  bottom: 16%;
+  left: 0;
+  width: 100%;
+  height: 4%;
+  background: repeating-linear-gradient(
+    90deg,
+    #f7f4e8 0 5%,
+    var(--accent) 5% 10%
+  );
+  transform: skewX(-20deg);
+}
+.garage-caption {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 12px 4px;
+}
+.garage-caption h2 {
+  font-size: clamp(22px, 1.4vw, 34px);
+  font-weight: 600;
+  letter-spacing: -0.8px;
+}
+.seen-mark {
+  font-size: clamp(11px, 0.7vw, 15px);
+  color: #52664a;
+}
 
 @media (max-width: 900px) {
-  .carousel-shell { grid-template-columns: 48px minmax(0, 1fr) 48px; gap: 12px; width: 100%; }
-  .carousel-arrow { width: 44px; height: 44px; font-size: 24px; }
+  .carousel-shell {
+    grid-template-columns: 48px minmax(0, 1fr) 48px;
+    gap: 12px;
+    width: 100%;
+  }
+  .carousel-arrow {
+    width: 44px;
+    height: 44px;
+    font-size: 24px;
+  }
 }
 
 @media (max-width: 680px) {
-  .carousel-shell { grid-template-columns: 1fr 1fr; gap: 8px 14px; }
-  .garage-viewport { grid-row: 1; grid-column: 1 / -1; }
-  .carousel-arrow { grid-row: 2; margin: 0; }
-  .carousel-arrow.previous { justify-self: end; }
-  .carousel-arrow.next { justify-self: start; }
-  .garage-caption { height: 56px; gap: 12px; }
-  .garage-caption h2 { font-size: 23px; }
+  .carousel-shell {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 14px;
+  }
+  .garage-viewport {
+    grid-row: 1;
+    grid-column: 1 / -1;
+  }
+  .carousel-arrow {
+    grid-row: 2;
+    margin: 0;
+  }
+  .carousel-arrow.previous {
+    justify-self: end;
+  }
+  .carousel-arrow.next {
+    justify-self: start;
+  }
+  .garage-caption {
+    height: 56px;
+    gap: 12px;
+  }
+  .garage-caption h2 {
+    font-size: 23px;
+  }
 }
