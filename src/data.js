@@ -6,10 +6,10 @@ export const garages = [
   {
     id: "Zellarium",
     author: "Zellarium",
-    avatar: "images/kamil_avatar.jpg",
+    avatar: "images/Zellarium_avatar.jpg",
     message:
       "Тооооооооооорт, с днем варенья! На самом деле я немножко наврал, могу я придумать что-то поинтереснее с поздравлением))) Пусть этот паддок будет для тебя вдохновением и подтверждением, что команда KAMAZ MASTERS ВСЕГДА С ТОБОЙ! Будь счастлива и быстрее всех на свете!",
-    photo: "images/kamil.jpg",
+    photo: "images/Zellarium.jpg",
     color: "#00A86B",
   },
   {
