@@ -1,45 +1,98 @@
-import { useEffect, useRef, useState } from 'react';
-import Avatar from './Avatar.jsx';
-import PhotoPlaceholder from './PhotoPlaceholder.jsx';
+import { useEffect, useRef, useState } from "react";
+import Avatar from "./Avatar.jsx";
+import ArtGallery, { photoList } from "./ArtGallery.jsx";
 
-/** Показывает фотографию или заглушку и личное поздравление. */
+function GiftContent({ garage, close }) {
+  const [activePhoto, setActivePhoto] = useState(
+    () => photoList(garage.photo)[0] || null,
+  );
+
+  return (
+    <div className="gift-layout" style={{ "--accent": garage.color }}>
+      <button
+        className="close-button"
+        autoFocus
+        onClick={close}
+        aria-label="Закрыть поздравление"
+      >
+        ✕
+      </button>
+
+      <ArtGallery
+        photos={garage.photo}
+        author={garage.author}
+        alt={garage.photoAlt}
+        onSelect={setActivePhoto}
+        showDownload={false}
+      />
+
+      <div className="gift-copy">
+        <div className="gift-copy-content">
+          <div className="author-line">
+            <Avatar garage={garage} />
+            <span>{garage.author}</span>
+          </div>
+
+          <h2 id="gift-title">{garage.title}</h2>
+
+          {garage.subtitle && <p className="subtitle">{garage.subtitle}</p>}
+
+          <p className="message">{garage.message}</p>
+        </div>
+
+        <div className="gift-actions">
+          {activePhoto ? (
+            <a className="button" href={activePhoto} download>
+              Скачать арт ↓
+            </a>
+          ) : (
+            <button className="button" disabled>
+              Скачать арт ↓
+            </button>
+          )}
+
+          <button className="text-button" onClick={close}>
+            Обратно в паддок →
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function GiftDialog({ garage, onClose }) {
   const ref = useRef(null);
-  const [failedPhoto, setFailedPhoto] = useState(null);
-  const hasPhoto = Boolean(garage?.photo && garage.photo !== failedPhoto);
+
   useEffect(() => {
-    if (garage && !ref.current.open) ref.current.showModal();
-    if (!garage && ref.current.open) ref.current.close();
+    const dialog = ref.current;
+
+    if (garage && !dialog.open) {
+      dialog.showModal();
+    }
+
+    if (!garage && dialog.open) {
+      dialog.close();
+    }
   }, [garage]);
 
   return (
     <dialog
-      ref={ref} className="gift-dialog" aria-labelledby="gift-title" onClose={onClose}
-      onClick={event => { if (event.target === event.currentTarget) ref.current.close(); }}
+      ref={ref}
+      className="gift-dialog"
+      aria-labelledby="gift-title"
+      onClose={onClose}
+      onClick={(event) => {
+        if (event.target === event.currentTarget) {
+          ref.current.close();
+        }
+      }}
     >
       {garage && (
-        <div className="gift-layout" style={{ '--accent': garage.color }}>
-          <button className="close-button" autoFocus onClick={() => ref.current.close()} aria-label="Закрыть поздравление">✕</button>
-          <div className="gift-art">
-            {hasPhoto ? (
-              <img
-                src={garage.photo}
-                alt={garage.photoAlt || `Фото к поздравлению: ${garage.author}`}
-                onError={() => setFailedPhoto(garage.photo)}
-              />
-            ) : <PhotoPlaceholder author={garage.author} />}
-          </div>
-          <div className="gift-copy">
-            <div className="author-line"><Avatar garage={garage} /><span>{garage.author}</span></div>
-            <h2 id="gift-title">{garage.title}</h2>
-            {garage.subtitle && <p className="subtitle">{garage.subtitle}</p>}
-            <p className="message">{garage.message}</p>
-            <div className="gift-actions">
-              {hasPhoto && <a className="button" href={garage.photo} download>Скачать фото ↓</a>}
-              <button className="text-button" onClick={() => ref.current.close()}>Обратно в паддок →</button>
-            </div>
-          </div>
-        </div>
+        <GiftContent
+          key={garage.id}
+          garage={garage}
+          close={() => ref.current.close()}
+        />
       )}
     </dialog>
   );

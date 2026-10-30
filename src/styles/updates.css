@@ -1,0 +1,390 @@
+/* Окно поздравления */
+
+.gift-dialog {
+  width: calc(100% - 32px);
+  max-width: 1760px;
+  max-height: calc(100dvh - 32px);
+}
+
+.gift-layout {
+  grid-template-columns:
+    minmax(0, 1.35fr)
+    minmax(360px, 1fr);
+}
+
+/* Горизонтальный арт занимает всю ширину окна. */
+
+.gift-layout:has(.art-gallery.is-landscape) {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.gift-copy {
+  min-width: 0;
+  padding: clamp(28px, 3vw, 56px);
+}
+
+.gift-layout:has(.art-gallery.is-landscape) .gift-copy {
+  padding-top: 28px;
+}
+
+/* Крупные аватары */
+
+.author-line {
+  gap: 22px;
+  font-size: clamp(20px, 1.5vw, 30px);
+  overflow-wrap: anywhere;
+}
+
+.author-line .avatar {
+  width: clamp(96px, 8vw, 144px);
+  height: clamp(96px, 8vw, 144px);
+  border-radius: 14px;
+  font-size: 32px;
+}
+
+.author-line .avatar img {
+  object-fit: contain;
+}
+
+.close-button {
+  z-index: 5;
+}
+
+/* Длинные слова в поздравлениях */
+
+.gift-copy .message,
+.podium-author .message {
+  overflow-wrap: anywhere;
+}
+
+/* Галерея артов */
+
+.art-gallery {
+  min-width: 0;
+  background: #eeeade;
+}
+
+.art-gallery:focus-visible {
+  outline: 3px solid var(--accent, #235848);
+  outline-offset: -3px;
+}
+
+.art-gallery-stage {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: clamp(300px, 68dvh, 980px);
+  padding: 16px;
+  overflow: hidden;
+  touch-action: pan-y;
+}
+
+.art-gallery-stage > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
+}
+
+.art-gallery-stage > .photo-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  aspect-ratio: auto;
+}
+
+.art-gallery-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 64px;
+  padding: 10px 16px;
+}
+
+.art-gallery-controls button {
+  width: 44px;
+  height: 44px;
+  border: 1px solid #bdb9ad;
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 22px;
+}
+
+.art-gallery-controls span {
+  min-width: 48px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.art-gallery-controls a {
+  padding: 10px;
+  color: var(--ink);
+  font-size: 14px;
+  text-underline-offset: 4px;
+}
+
+/* Автор подиума */
+
+.podium-author {
+  max-width: 1000px;
+  margin: 0 auto 36px;
+  padding: 28px;
+  text-align: left;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.podium-author .author-line {
+  margin-bottom: 18px;
+}
+
+.podium-author .author-line h2 {
+  font-size: clamp(24px, 2vw, 36px);
+}
+
+.podium-author h3 {
+  font-size: 24px;
+}
+
+.podium-author .message {
+  margin-top: 14px;
+}
+
+/* Остальные участники */
+
+.podium-page .team-line .avatar {
+  width: 64px;
+  height: 64px;
+  font-size: 20px;
+  border-radius: 12px;
+}
+
+.podium-page .team-line .avatar img {
+  object-fit: contain;
+}
+
+/* Арты на подиуме */
+
+.podium-page .final-art {
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.podium-page .art-gallery-stage {
+  height: min(72dvh, 1000px);
+}
+
+/* Карусель гаражей */
+
+.paddock-carousel-area {
+  min-width: 0;
+}
+
+.paddock .carousel-arrow {
+  margin-bottom: 0;
+}
+
+/* Подгоняем страницу гаражей под высоту монитора. */
+
+@media (min-width: 901px) and (min-height: 700px) {
+  .app-shell.view-paddock {
+    height: 100dvh;
+    min-height: 0;
+  }
+
+  .view-paddock .site-header,
+  .view-paddock .site-footer {
+    flex-shrink: 0;
+  }
+
+  .view-paddock .site-footer {
+    margin-top: 0;
+  }
+
+  .view-paddock .paddock {
+    flex: 1;
+    min-height: 0;
+    width: calc(100% - clamp(32px, 5vw, 128px));
+
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    gap: 12px;
+    padding-block: 18px;
+  }
+
+  .paddock-intro {
+    margin-bottom: 0;
+  }
+
+  .paddock-intro p {
+    margin-top: 8px;
+  }
+
+  .paddock-actions {
+    margin-top: 0;
+  }
+
+  .paddock-carousel-area {
+    min-height: 0;
+    container-type: size;
+    display: grid;
+    place-items: center;
+  }
+
+  .paddock-carousel-area .carousel-shell {
+    width: min(100%, calc(100cqh * 1.6 + 176px));
+    margin: 0 auto;
+  }
+}
+
+/* Телефоны и планшеты */
+
+@media (max-width: 900px) {
+  .gift-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .art-gallery-stage {
+    height: clamp(260px, 58dvh, 700px);
+  }
+
+  .art-gallery.is-landscape .art-gallery-stage {
+    height: auto;
+  }
+
+  .art-gallery.is-landscape .art-gallery-stage > img {
+    height: auto;
+    max-height: 65dvh;
+  }
+
+  .gift-copy {
+    padding: 28px 22px;
+  }
+
+  .author-line .avatar {
+    width: 96px;
+    height: 96px;
+  }
+
+  .podium-author {
+    padding: 22px;
+  }
+}
+
+/* Арт слева, поздравление и скачивание справа. */
+
+.gift-dialog {
+  width: calc(100% - 32px);
+  max-width: 1760px;
+  height: min(900px, calc(100dvh - 32px));
+  max-height: calc(100dvh - 32px);
+  overflow: hidden;
+}
+
+.gift-dialog .gift-layout,
+.gift-dialog .gift-layout:has(.art-gallery.is-landscape) {
+  height: 100%;
+  min-height: 0;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+}
+
+/* Левая колонка */
+
+.gift-dialog .gift-layout > .art-gallery {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.gift-dialog .art-gallery-stage {
+  height: 100%;
+  min-height: 0;
+  padding: 16px;
+  aspect-ratio: auto;
+}
+
+.gift-dialog .art-gallery-stage > img {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  max-height: none;
+  object-fit: contain;
+}
+
+/* Правая колонка */
+
+.gift-dialog .gift-copy {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  padding: 56px clamp(20px, 2vw, 40px) 24px;
+}
+
+.gift-copy-content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 10px;
+  scrollbar-gutter: stable;
+}
+
+.gift-dialog .message {
+  overflow-wrap: anywhere;
+}
+
+/* Кнопки остаются внизу правой колонки. */
+
+.gift-dialog .gift-actions {
+  flex-shrink: 0;
+  margin-top: 20px;
+  padding-top: 20px;
+  gap: 12px 20px;
+  border-top: 1px solid var(--line);
+}
+
+/* Одна колонка только на телефоне. */
+
+@media (max-width: 760px) {
+  .gift-dialog {
+    width: calc(100% - 24px);
+    height: auto;
+    max-height: calc(100dvh - 24px);
+    overflow: auto;
+  }
+
+  .gift-dialog .gift-layout,
+  .gift-dialog .gift-layout:has(.art-gallery.is-landscape) {
+    height: auto;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .gift-dialog .gift-layout > .art-gallery {
+    height: auto;
+  }
+
+  .gift-dialog .art-gallery-stage {
+    height: clamp(220px, 48dvh, 560px);
+  }
+
+  .gift-dialog .gift-copy {
+    height: auto;
+    padding: 28px 22px;
+  }
+
+  .gift-copy-content {
+    flex: initial;
+    overflow: visible;
+    padding-right: 0;
+  }
+}

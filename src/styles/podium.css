@@ -1,0 +1,207 @@
+.podium-page {
+  width: calc(100% - clamp(32px, 5vw, 128px));
+  padding-block: 20px;
+
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  gap: 18px;
+}
+
+/* Заголовок */
+
+.podium-intro h1 {
+  font-size: clamp(32px, 3vw, 68px);
+}
+
+.podium-intro .podium-message {
+  margin: 10px auto 0;
+  line-height: 1.5;
+}
+
+/* Арт слева, поздравление справа */
+
+.podium-content {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 3fr)
+    minmax(0, 2fr);
+
+  gap: 24px;
+  min-width: 0;
+}
+
+/* Левая колонка */
+
+.podium-art {
+  min-width: 0;
+  min-height: 0;
+  height: clamp(300px, 60dvh, 900px);
+
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.podium-art .art-gallery {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+
+  height: 100%;
+  min-height: 0;
+}
+
+.podium-art .art-gallery-stage {
+  height: 100%;
+  min-height: 0;
+}
+
+.podium-art .art-gallery-stage > img {
+  width: 100%;
+  height: 100%;
+
+  min-height: 0;
+  max-height: none;
+
+  object-fit: contain;
+}
+
+/* Заглушка тоже занимает левую колонку */
+
+.podium-art .final-art {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  margin: 0;
+}
+
+.podium-art .final-art-placeholder {
+  min-height: 0;
+  aspect-ratio: auto;
+}
+
+/* Правая колонка */
+
+.podium-content .podium-author {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+  min-height: 0;
+
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: clamp(20px, 2vw, 40px);
+
+  text-align: left;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.podium-author-content {
+  min-height: 0;
+  overflow-wrap: anywhere;
+}
+
+.podium-author-content .message {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* Скачивание внизу правой колонки */
+
+.podium-download {
+  flex-shrink: 0;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+/* Участники под обеими колонками */
+
+.podium-page .team-line {
+  min-width: 0;
+  margin: 0;
+  gap: 12px 24px;
+}
+
+.podium-page .team-line > span {
+  overflow-wrap: anywhere;
+}
+
+.podium-back {
+  justify-self: center;
+}
+
+/* Заполнение доступной высоты экрана */
+
+@media (min-width: 901px) and (min-height: 700px) {
+  .app-shell.view-podium {
+    height: 100dvh;
+    min-height: 0;
+  }
+
+  .view-podium .site-header,
+  .view-podium .site-footer {
+    flex-shrink: 0;
+  }
+
+  .view-podium .site-footer {
+    margin-top: 0;
+  }
+
+  .view-podium .podium-page {
+    flex: 1;
+    min-height: 0;
+
+    grid-template-rows:
+      auto
+      minmax(0, 1fr)
+      auto
+      auto;
+
+    gap: 14px;
+    padding-block: 16px;
+  }
+
+  .podium-content {
+    min-height: 0;
+  }
+
+  .podium-art {
+    height: 100%;
+  }
+
+  .podium-author-content {
+    flex: 1;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    padding-right: 10px;
+    scrollbar-gutter: stable;
+  }
+
+  .podium-page .team-line {
+    max-height: min(16dvh, 160px);
+    overflow-y: auto;
+    align-content: start;
+    padding: 4px;
+  }
+}
+
+/* Телефоны и планшеты */
+
+@media (max-width: 900px) {
+  .podium-content {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .podium-art {
+    height: clamp(260px, 52dvh, 700px);
+  }
+
+  .podium-author-content {
+    overflow: visible;
+  }
+}

@@ -1,13 +1,7 @@
 export const site = {
-  headerIcon: null,
-  finalArt: null,
-  finalArtAlt: "Общий поздравительный арт для Торта",
+  headerIcon: "images/Tort.jpg",
 };
 
-// Один объект — один гараж. Можно добавлять любое количество записей.
-// author — имя, avatar — аватар автора, photo — фото к поздравлению.
-// В avatar и photo укажи путь вида 'images/name.jpg' или null.
-// id необязателен; message — текст, color — цвет гаража.
 export const garages = [
   {
     id: "Zellarium",
@@ -41,7 +35,7 @@ export const garages = [
     avatar: "images/Alex_avatar.jpg",
     message:
       "Дорогой Торт Тортилла, ты самая хорошая крутющая невъебейшая прям муа, я поздравляю тебя с днём рождения, желаю тебе много много радостей в жизни, много много крутых подарков и конечно же много много удачи в любых начинаниях!!! 🏎️🏎️🏎️ \n Ты можешь хоть горы свернуть и ни за что не слушай никого кто пытается доказать тебе обратное!!!!!!!!! Ты наш финишер номер 1 форевер 🧡",
-    photo: "images/Alex.gif",
+    photo: ["images/Alex_meme.jpg", "images/Alex.gif"],
     color: "#D87093",
   },
   {
@@ -63,10 +57,23 @@ export const garages = [
   },
   {
     id: "felya",
-    author: "felya",
-    avatar: "images/felya_avatar.jpg",
+    author: "Felya",
+    avatar: "images/felya_avatar.png",
     message: "welcome to the old ppl club grandpa",
-    photo: "images/felya.png",
+    photo: ["images/felya_meme.jpg", "images/felya.png"],
     color: "#FF00CC",
   },
 ];
+
+export const podium = {
+  author: "Sairon",
+  avatar: "images/Sairon_avatar.jpg", // Например: "images/podium_avatar.jpg"
+  color: "#00A86B",
+  title: "ТОРТ ТОРТИЛА ПРИВЕТ!!!",
+  message: `Я даже могу сказать... привет здоровяк :D
+Кароче мы всем камазом хотим тебе сказать с днём рождения!! Я очень рад что знаком с тобой все эти годы наши пути хоть слегка и разошлись с последним годом но я всё равно рад поддерживать с такой хоть и редкое но очень приятное общение. Не смогу представить себе ни одной поездки в мск больше без того что бы хотя бы немного не встретится с тобой и не погулять. Я очень ценю каждый момент как мы можем поделиться о дерьме происходящем в нашей жизни.
+С дршечкай тебя родной надеюсь тебе понравится наш маааааленький подарочек. ❤️❤️❤️`,
+  // Строка или массив путей.
+  // При null используется существующий site.finalArt.
+  photo: "images/Sairon_podium.jpg",
+};
